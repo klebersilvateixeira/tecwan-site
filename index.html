@@ -1,78 +1,597 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Soluções em infraestrutura, segurança da informação e cloud computing para empresas. TecWan Solutions.">
-    <meta name="author" content="TecWan Solutions">
-    <title>TecWan Solutions</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <style>
-        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f5f7fa; }
-        header { background-color: #0074D9; color: white; padding: 20px; text-align: center; }
-        header img { width: 120px; margin-bottom: 5px; }
-        .slogan { font-size: 1em; margin-top: 5px; }
-        .hero {
-            padding: 60px 20px; text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1627472111214-88e9b6707b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-            color: white;
-        }
-        .hero h1 { font-size: 2.5em; margin-bottom: 20px; }
-        .hero a { background-color: #0056b3; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .services { display: flex; flex-wrap: wrap; justify-content: center; padding: 40px 20px; background-color: #ffffff; }
-        .service { flex: 1 1 250px; margin: 20px; padding: 20px; background-color: #e9f1fb; border-radius: 10px; text-align: center; transition: transform 0.3s ease; }
-        .service:hover { transform: translateY(-5px); }
-        .service img { width: 80px; margin-bottom: 20px; }
-        .service a { display: inline-block; margin-top: 10px; background-color: #0074D9; color: white; padding: 8px 16px; text-decoration: none; border-radius: 5px; font-size: 0.9em; }
-        footer { background-color: #001F3F; color: white; text-align: center; padding: 30px 20px; }
-        footer p { margin: 5px 0; }
-        .contact { margin-top: 20px; font-size: 0.95em; }
-        .btn-contact { display: inline-block; margin-top: 20px; background-color: #0056b3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TecWan Solutions - Consultoria especializada em Microsoft 365, Azure e Segurança da Informação." />
+  <title>TecWan Solutions | Microsoft 365, Azure e Segurança da Informação</title>
+  <style>
+    :root {
+      --primary: #006d8f;
+      --primary-dark: #0c2a3d;
+      --accent: #18a6c8;
+      --bg: #f5f9fb;
+      --white: #ffffff;
+      --text: #1f2933;
+      --muted: #5f6f7a;
+      --border: #d9e6ec;
+      --shadow: 0 18px 45px rgba(12, 42, 61, 0.12);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo img {
+      height: 92px;
+      width: auto;
+      display: block;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .menu a:hover { color: var(--primary); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 12px 28px rgba(0, 109, 143, 0.28);
+    }
+
+    .btn-primary:hover { background: #005b78; transform: translateY(-1px); }
+
+    .btn-secondary {
+      border-color: var(--border);
+      background: var(--white);
+      color: var(--primary-dark);
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); color: var(--primary); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(24, 166, 200, 0.20), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #eef8fb 50%, #e9f5f9 100%);
+      padding: 92px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 13px;
+      border: 1px solid rgba(0, 109, 143, 0.16);
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      color: var(--primary-dark);
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1.05;
+      margin: 0 0 22px;
+      letter-spacing: -1.5px;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .trust span {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      color: var(--primary-dark);
+      font-size: 24px;
+      margin: 0 0 12px;
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .check-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .check-list li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 900;
+      background: #e7f7fb;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    section { padding: 76px 0; }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-title h2 {
+      color: var(--primary-dark);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      margin: 0 0 14px;
+      letter-spacing: -0.7px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 12px 34px rgba(12, 42, 61, 0.06);
+      transition: all 0.2s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+    .icon {
+      width: 50px;
+      height: 42px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #e7f7fb, #ffffff);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      color: var(--primary-dark);
+      font-size: 22px;
+      margin: 0 0 10px;
+    }
+
+    .card p { color: var(--muted); margin: 0 0 16px; }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .split {
+      background: var(--white);
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .panel {
+      background: linear-gradient(135deg, var(--primary-dark), #0b5d75);
+      color: var(--white);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 { font-size: 34px; line-height: 1.15; margin: 0 0 16px; }
+    .panel p { color: rgba(255,255,255,0.78); margin: 0; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      background: #f8fbfc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .feature strong { display: block; color: var(--primary-dark); margin-bottom: 6px; }
+    .feature span { color: var(--muted); font-size: 15px; }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      counter-reset: step;
+    }
+
+    .step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      position: relative;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: inline-flex;
+      color: var(--primary);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .step h3 { margin: 0 0 8px; color: var(--primary-dark); }
+    .step p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .cta {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      border-radius: 32px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 42px); line-height: 1.12; }
+    .cta p { color: rgba(255,255,255,0.82); margin: 0; max-width: 760px; }
+    .cta .btn { background: var(--white); color: var(--primary-dark); }
+
+    footer {
+      background: #071f2e;
+      color: rgba(255,255,255,0.82);
+      padding: 38px 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    footer img {
+      height: 50px;
+      background: white;
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    footer a { color: #aee8f5; }
+
+    @media (max-width: 900px) {
+      .menu { display: none; }
+      .hero-grid, .split-grid, .cta { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .process { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding-top: 64px; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(100% - 28px, 1120px); }
+      .process, .feature-grid { grid-template-columns: 1fr; }
+      .cta { padding: 30px; }
+      .logo img { height: 48px; }
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <img src="logo.png" alt="TecWan Solutions">
-    <p class="slogan">Conectando sua empresa ao futuro</p>
-</header>
-
-<section class="hero">
-    <h1>Transformamos tecnologia em soluções inteligentes para o seu negócio.</h1>
-    <a href="#servicos">Conheça nossos serviços</a>
-</section>
-
-<section id="servicos" class="services">
-    <div class="service">
-        <img src="https://img.icons8.com/ios-filled/100/network-cable.png" alt="Infraestrutura de Redes">
-        <h3>Infraestrutura de Redes</h3>
-        <p>Planejamento e execução de redes robustas e escaláveis, com alta disponibilidade.</p>
-        <a href="#contato">Saiba Mais</a>
+  <header>
+    <div class="container nav">
+      <a href="#inicio" class="logo" aria-label="TecWan Solutions">
+        <img src="assets/logo-tecwan.png" alt="TecWan Solutions" />
+      </a>
+      <nav class="menu" aria-label="Menu principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#metodo">Como atuamos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="btn btn-primary" href="mailto:contato@tecwan.com.br?subject=Contato%20via%20site%20TecWan">Fale conosco</a>
     </div>
-    <div class="service">
-        <img src="https://img.icons8.com/ios-filled/100/lock.png" alt="Segurança da Informação">
-        <h3>Segurança da Informação</h3>
-        <p>Defesa proativa de dados e sistemas com soluções modernas de proteção digital.</p>
-        <a href="#contato">Saiba Mais</a>
-    </div>
-    <div class="service">
-        <img src="https://img.icons8.com/ios-filled/100/cloud.png" alt="Cloud Computing">
-        <h3>Cloud Computing</h3>
-        <p>Migração e gestão eficiente de ambientes em nuvem pública, híbrida ou privada.</p>
-        <a href="#contato">Saiba Mais</a>
-    </div>
-</section>
+  </header>
 
-<footer id="contato">
-    <p>&copy; 2025 TecWan Solutions - Todos os direitos reservados</p>
-    <div class="contact">
-        <p>📧 contato@tecwan.com.br</p>
-        <p>📞 +55 61 98214-9751</p>
-    </div>
-    <a href="#contato" class="btn-contact">Fale Conosco</a>
-</footer>
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Microsoft 365 • Azure • Segurança da Informação</div>
+          <h1>Modernize e proteja o ambiente de TI da sua empresa.</h1>
+          <p>
+            A TecWan Solutions oferece consultoria especializada em soluções Microsoft,
+            ajudando empresas a usar melhor o Microsoft 365, migrar para a nuvem com Azure
+            e fortalecer a segurança das informações.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:contato@tecwan.com.br?subject=Solicita%C3%A7%C3%A3o%20de%20consultoria%20TecWan">Solicitar consultoria</a>
+            <a class="btn btn-secondary" href="#servicos">Conhecer soluções</a>
+          </div>
+          <div class="trust">
+            <span>Consultoria especializada</span>
+            <span>Ambientes Microsoft</span>
+            <span>Cloud & Security</span>
+          </div>
+        </div>
 
+        <aside class="hero-card" aria-label="Áreas de atuação">
+          <h3>Atuação focada no ecossistema Microsoft</h3>
+          <p>
+            Soluções para empresas que precisam de produtividade, segurança,
+            colaboração e continuidade operacional.
+          </p>
+          <ul class="check-list">
+            <li>Implantação, migração e administração de Microsoft 365.</li>
+            <li>Projetos e sustentação em Microsoft Azure.</li>
+            <li>Segurança de identidades, acessos e dados corporativos.</li>
+            <li>Boas práticas para SharePoint, OneDrive, Teams e Exchange Online.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="container">
+        <div class="section-title">
+          <h2>Soluções para empresas que querem crescer com segurança.</h2>
+          <p>
+            Serviços objetivos e personalizados para melhorar colaboração, reduzir riscos
+            e aumentar a maturidade do ambiente Microsoft.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">☁</div>
+            <h3>Microsoft Azure</h3>
+            <p>Projetos, administração e modernização de ambientes em nuvem Microsoft.</p>
+            <ul>
+              <li>Máquinas virtuais e redes em nuvem</li>
+              <li>Backup, recuperação e continuidade</li>
+              <li>Governança e boas práticas</li>
+              <li>Otimização de custos</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon">▣</div>
+            <h3>Microsoft 365</h3>
+            <p>Implantação e suporte para produtividade, comunicação e colaboração.</p>
+            <ul>
+              <li>Exchange Online e migração de e-mails</li>
+              <li>SharePoint, OneDrive e Teams</li>
+              <li>Organização de arquivos e permissões</li>
+              <li>Suporte e administração do ambiente</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon">🔐</div>
+            <h3>Segurança da Informação</h3>
+            <p>Proteção de contas, acessos, dados e ambientes corporativos.</p>
+            <ul>
+              <li>MFA e proteção de identidades</li>
+              <li>Entra ID e acesso condicional</li>
+              <li>Boas práticas de segurança</li>
+              <li>Proteção e governança de dados</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca" class="split">
+      <div class="container split-grid">
+        <div class="panel">
+          <h2>Segurança integrada ao ambiente Microsoft.</h2>
+          <p>
+            A segurança precisa fazer parte do dia a dia da empresa. A TecWan ajuda a aplicar
+            controles práticos para reduzir riscos sem complicar a operação.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature">
+            <strong>Proteção contra phishing</strong>
+            <span>Orientações, boas práticas e configurações para reduzir riscos em e-mails.</span>
+          </div>
+          <div class="feature">
+            <strong>Identidade e acesso</strong>
+            <span>MFA, revisão de permissões, grupos, usuários e controles de acesso.</span>
+          </div>
+          <div class="feature">
+            <strong>Compartilhamento seguro</strong>
+            <span>Boas práticas para OneDrive, SharePoint e colaboração com usuários externos.</span>
+          </div>
+          <div class="feature">
+            <strong>Governança e LGPD</strong>
+            <span>Apoio técnico para melhorar proteção de dados e maturidade do ambiente.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <div class="container">
+        <div class="section-title">
+          <h2>Como atuamos</h2>
+          <p>
+            Uma abordagem simples, consultiva e direta para entender o cenário,
+            corrigir riscos e evoluir o ambiente de forma segura.
+          </p>
+        </div>
+
+        <div class="process">
+          <div class="step">
+            <h3>Diagnóstico</h3>
+            <p>Entendimento do ambiente, necessidades e principais pontos de atenção.</p>
+          </div>
+          <div class="step">
+            <h3>Planejamento</h3>
+            <p>Definição das ações, prioridades e melhores práticas aplicáveis ao cenário.</p>
+          </div>
+          <div class="step">
+            <h3>Implementação</h3>
+            <p>Execução técnica com foco em segurança, estabilidade e continuidade.</p>
+          </div>
+          <div class="step">
+            <h3>Acompanhamento</h3>
+            <p>Suporte, orientações e melhorias contínuas conforme a necessidade da empresa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h2>Precisa melhorar seu ambiente Microsoft 365, Azure ou segurança?</h2>
+            <p>
+              Fale com a TecWan Solutions e entenda como podemos ajudar sua empresa com uma abordagem prática, segura e personalizada.
+            </p>
+          </div>
+          <a class="btn" href="mailto:contato@tecwan.com.br?subject=Contato%20via%20site%20TecWan">Entrar em contato</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/logo-tecwan.png" alt="TecWan Solutions" />
+      </div>
+      <div>
+        <strong>TecWan Solutions</strong><br />
+        Microsoft 365 • Azure • Segurança da Informação<br />
+        <a href="mailto:contato@tecwan.com.br">contato@tecwan.com.br</a> • <a href="tel:+5561982149751">+55 61 98214-9751</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
