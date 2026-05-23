@@ -384,12 +384,75 @@
 
     footer a { color: #aee8f5; }
 
+
+    .microsoft-ecosystem {
+      background: var(--white);
+      padding: 70px 0;
+    }
+
+    .ecosystem-card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 90% 20%, rgba(24, 166, 200, 0.12), transparent 28%),
+        linear-gradient(135deg, #ffffff 0%, #f3fafc 100%);
+      box-shadow: var(--shadow);
+      padding: 42px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .microsoft-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 230px;
+    }
+
+    .microsoft-symbol {
+      display: grid;
+      grid-template-columns: repeat(2, 22px);
+      grid-template-rows: repeat(2, 22px);
+      gap: 4px;
+    }
+
+    .microsoft-symbol span:nth-child(1) { background: #f25022; }
+    .microsoft-symbol span:nth-child(2) { background: #7fba00; }
+    .microsoft-symbol span:nth-child(3) { background: #00a4ef; }
+    .microsoft-symbol span:nth-child(4) { background: #ffb900; }
+
+    .microsoft-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #5f6368;
+      letter-spacing: -0.5px;
+    }
+
+    .ecosystem-content h2 {
+      color: var(--primary-dark);
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.12;
+      margin: 0 0 12px;
+      letter-spacing: -0.7px;
+    }
+
+    .ecosystem-content p {
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0;
+      max-width: 760px;
+    }
+
     @media (max-width: 900px) {
       .menu { display: none; }
       .hero-grid, .split-grid, .cta { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr; }
       .process { grid-template-columns: repeat(2, 1fr); }
       .hero { padding-top: 64px; }
+      .ecosystem-card { grid-template-columns: 1fr; text-align: center; }
+      .microsoft-mark { justify-content: center; }
     }
 
     @media (max-width: 560px) {
@@ -404,7 +467,7 @@
   <header>
     <div class="container nav">
       <a href="#inicio" class="logo" aria-label="TecWan Solutions">
-        <img src="logo-tecwan.png" alt="TecWan Solutions" />
+        <img src="assets/logo-tecwan.png" alt="TecWan Solutions" />
       </a>
       <nav class="menu" aria-label="Menu principal">
         <a href="#servicos">Serviços</a>
@@ -566,6 +629,30 @@
       </div>
     </section>
 
+
+    <section class="microsoft-ecosystem" id="ecossistema-microsoft">
+      <div class="container">
+        <div class="ecosystem-card">
+          <div class="microsoft-mark" aria-label="Microsoft">
+            <div class="microsoft-symbol" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="microsoft-name">Microsoft</div>
+          </div>
+
+          <div class="ecosystem-content">
+            <h2>Ecossistema Microsoft</h2>
+            <p>
+              Empresa participante do Microsoft AI Cloud Partner Program, com atuação especializada em Microsoft 365, Azure e Segurança da Informação.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contato">
       <div class="container">
         <div class="cta">
@@ -584,7 +671,7 @@
   <footer>
     <div class="container footer-grid">
       <div>
-        <img src="logo-tecwan.png" alt="TecWan Solutions" />
+        <img src="assets/logo-tecwan.png" alt="TecWan Solutions" />
       </div>
       <div>
         <strong>TecWan Solutions</strong><br />
